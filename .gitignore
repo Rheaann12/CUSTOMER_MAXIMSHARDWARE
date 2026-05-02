@@ -1,0 +1,9 @@
+node_modules/
+dist/
+*.log
+.vscode/
+.DS_Store
+
+# Nested node_modules
+customer/node_modules/
+customer/dist/
