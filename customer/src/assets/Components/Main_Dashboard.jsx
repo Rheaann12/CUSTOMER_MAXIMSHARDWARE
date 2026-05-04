@@ -68,7 +68,7 @@ export default function Main_Dashboard() {
       {/* Hero Section */}
       <section className="relative flex flex-col md:flex-row items-center justify-between px-6 md:px-16 py-12 md:py-12 min-h-[60vh] md:min-h-[50vh] overflow-hidden bg-[#fbfbfb] border-b border-gray-100">
         <div className="w-full md:max-w-xl z-20 text-center md:text-left mt-4 md:mt-4">
-          <h1 className="text-5xl md:text-[72px] font-pt-serif font-black text-[#2e2e2e] leading-[1.05] tracking-tight" style={{ textShadow: '2px 4px 6px rgba(0,0,0,0.25)' }}>
+          <h1 className="text-5xl md:text-[90px] font-pt-serif font-black text-[#2e2e2e] leading-[1.05] tracking-tight" style={{ textShadow: '2px 4px 6px rgba(0,0,0,0.25)' }}>
             YOUR TRUSTED
           </h1>
           <h2 className="text-4xl md:text-[52px] font-serif font-extrabold text-[#114925] mt-1 md:mt-0 tracking-tight" style={{ textShadow: '1px 2px 4px rgba(0,0,0,0.2)' }}>
@@ -201,22 +201,22 @@ export default function Main_Dashboard() {
       </section>
 
       {/* Services Section */}
-      <section className="px-16 pt-12 pb-14 flex flex-col md:flex-row gap-10 items-start relative z-20 bg-white">
+      <section className="px-16 pt-12 pb-14 flex flex-col md:flex-row gap-10 items-center justify-center relative z-20 bg-white">
         {/* Left Side */}
-        <div className="w-full md:w-[35%] pt-2">
-          <div className="flex items-center gap-3 mb-3">
+        <div className="w-full md:w-[45%] pt-2 flex flex-col items-center">
+          <div className="flex flex-col items-center gap-3 mb-3 text-center">
             <svg className="w-[60px] h-[60px] text-[#5cbd40] drop-shadow-sm" fill="currentColor" viewBox="0 0 24 24">
               <path d="M20 8h-3V4H3c-1.1 0-2 .9-2 2v11h2c0 1.66 1.34 3 3 3s3-1.34 3-3h6c0 1.66 1.34 3 3 3s3-1.34 3-3h2v-5l-3-4zM6 18.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm13.5-9l1.96 2.5H17V9.5h2.5zm-1.5 9c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z" />
             </svg>
             <h3 className="text-[32px] font-body text-gray-900 tracking-tight leading-none" style={{ fontWeight: 400 }}>Delivery Service</h3>
           </div>
-          <p className="text-[13px] text-gray-800 font-medium leading-[1.6] mt-4 pr-4">
+          <p className="text-[13px] text-gray-800 font-medium leading-[1.6] mt-4 text-center">
             Maxims Hardware offers delivery services within Gingoog City and nearby areas.
             Customers can conveniently order construction materials such as cement, sand,
             gravel, and tools without visiting the store.
           </p>
 
-          <div className="flex gap-3 mt-6">
+          <div className="flex justify-center gap-3 mt-6">
             <button className="px-5 py-2 bg-[#61af3d] text-white rounded font-bold text-[12px] shadow-sm hover:bg-[#52a13b] transition-all border border-[#61af3d]" onClick={() => handleProtectedAction('/add-to-cart')}>
               Order Delivery
             </button>
@@ -228,12 +228,12 @@ export default function Main_Dashboard() {
 
         {/* Right Side Categories */}
         <div className="w-full md:w-[65%] relative">
-          <div className="grid grid-cols-4 gap-4">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4">
             <CategoryCard
               title="Tools"
               onClick={() => navigate('/products/tools')}
               icon={
-                <svg className="w-[65px] h-[65px] text-black mb-1 drop-shadow-sm" fill="none" stroke="black" viewBox="0 0 24 24" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                <svg className="w-[50px] h-[50px] md:w-[65px] md:h-[65px] text-black mb-1 drop-shadow-sm" fill="none" stroke="black" viewBox="0 0 24 24" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"></path>
                   <path d="M7 14l-4 4a2 2 0 0 0 0 2.8l.2.2a2 2 0 0 0 2.8 0l4-4" stroke="black" strokeWidth="2"></path>
                   <path d="M18 9l-4 4" stroke="black" strokeWidth="2"></path>
@@ -245,7 +245,7 @@ export default function Main_Dashboard() {
               title="Construction Material"
               onClick={() => navigate('/products/cement')}
               icon={
-                <svg className="w-[65px] h-[65px] text-black mb-1 drop-shadow-sm" fill="currentColor" stroke="black" viewBox="0 0 24 24" strokeWidth="1">
+                <svg className="w-[50px] h-[50px] md:w-[65px] md:h-[65px] text-black mb-1 drop-shadow-sm" fill="currentColor" stroke="black" viewBox="0 0 24 24" strokeWidth="1">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2h-3L9 3H5a2 2 0 00-2 2v6" fill="#00000020" />
                   <path strokeLinecap="round" strokeLinejoin="round" d="M7 11v6m5-6v6m5-6v6M5 14h14" />
                   <circle cx="12" cy="6" r="3" fill="#000000" />
@@ -256,7 +256,7 @@ export default function Main_Dashboard() {
               title="Plumbing"
               onClick={() => navigate('/products/plumbing')}
               icon={
-                <svg className="w-[65px] h-[65px] text-black mb-1 drop-shadow-sm" fill="none" stroke="black" viewBox="0 0 24 24" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                <svg className="w-[50px] h-[50px] md:w-[65px] md:h-[65px] text-black mb-1 drop-shadow-sm" fill="none" stroke="black" viewBox="0 0 24 24" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M12 4v4m0 0a2 2 0 002 2h3m-5-2a2 2 0 01-2 2H7m5 4v6m-4-6h8" strokeWidth="2" />
                   <circle cx="12" cy="18" r="1.5" fill="black" />
                   <path d="M19 10v4a2 2 0 01-2 2H7a2 2 0 01-2-2v-4" />
@@ -268,7 +268,7 @@ export default function Main_Dashboard() {
               title="Electrical"
               onClick={() => navigate('/products/electrical')}
               icon={
-                <svg className="w-[65px] h-[65px] text-black mb-1 drop-shadow-sm" fill="none" stroke="black" viewBox="0 0 24 24" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                <svg className="w-[50px] h-[50px] md:w-[65px] md:h-[65px] text-black mb-1 drop-shadow-sm" fill="none" stroke="black" viewBox="0 0 24 24" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M9 16.5a5 5 0 116 0 3.5 3.5 0 00-1 3H10a3.5 3.5 0 00-1-3z" strokeWidth="2.5" fill="#00000015" />
                   <path d="M9 22.5h6" strokeWidth="2.5" />
                   <path d="M12 2v1" strokeWidth="2.5" />
@@ -315,22 +315,24 @@ export default function Main_Dashboard() {
       {/* About & Contact Section */}
       <section className="px-16 pt-8 pb-20 bg-white flex flex-col lg:flex-row gap-12 relative z-10 w-[95%] mx-auto">
         {/* Left: About */}
-        <div className="w-full lg:w-[48%] text-left pt-2 pr-6">
+        <div className="w-full lg:w-[48%] text-center pt-2 px-4 flex flex-col items-center">
           <h2 className="text-[34px] font-body text-black tracking-tight leading-none font-medium mb-5">About Maxims Hardware</h2>
-          <p className="text-[13px] text-gray-900 font-medium leading-[1.6] mb-8 pr-4 text-justify">
+          <p className="text-[13px] text-gray-900 font-medium leading-[1.6] mb-8 text-center">
             Maxims Hardware is a retail hardware store located in Gingoog City that
             provides affordable construction materials and tools such as cement,
             nails, paint, and plumbing supplies. The business serves builders,
             workers, and homeowners by offering quality products and reliable
             customer service.
           </p>
-          <button
-            className="w-[320px] h-[46px] rounded font-body font-medium text-white text-[16px] shadow-sm tracking-wide transition-all hover:opacity-90 flex items-center justify-center gap-2 border border-[#305c19]"
-            style={{ background: 'linear-gradient(135deg, #4d7a2e 0%, #608e3d 100%)' }}
-            onClick={() => navigate('/about')}
-          >
-            Learn More <span className="font-light text-[20px] mb-0.5 ml-1">{">"}</span>
-          </button>
+          <div className="w-full flex justify-center mt-4">
+            <button
+              className="w-[320px] h-[46px] rounded font-body font-medium text-white text-[16px] shadow-sm tracking-wide transition-all hover:opacity-90 flex items-center justify-center gap-2 border border-[#305c19]"
+              style={{ background: 'linear-gradient(135deg, #4d7a2e 0%, #608e3d 100%)' }}
+              onClick={() => navigate('/about')}
+            >
+              Learn More <span className="font-light text-[20px] mb-0.5 ml-1">{">"}</span>
+            </button>
+          </div>
         </div>
 
         {/* Divider */}
@@ -364,7 +366,7 @@ export default function Main_Dashboard() {
             </div>
           </div>
 
-          <div className="flex justify-end mt-4 pr-1 gap-2">
+          <div className="flex justify-center mt-4 pr-1 gap-2">
             <button onClick={() => handleProtectedAction('/contact')} className="bg-[#1b4324] hover:bg-[#112d18] text-white font-bold px-10 py-2.5 rounded shadow-sm text-[12px] transition-colors">
               Send Message
             </button>
@@ -425,12 +427,14 @@ function ProductCard({ id, title, price, bgColor, imgSrc, onAdded, onClick }) {
 function CategoryCard({ title, icon, onClick }) {
   return (
     <div
-      className="bg-[#daeca9] rounded-[14px] flex flex-col items-center justify-center p-4 shadow-[2px_4px_12px_rgba(0,0,0,0.15)] border border-[#bddb8a] aspect-[1.3/1] hover:shadow-lg transition-all cursor-pointer group hover:bg-[#cbed9b] transform hover:-translate-y-1"
+      className="bg-[#daeca9] rounded-[14px] flex flex-col items-center justify-center p-3 shadow-[2px_4px_12px_rgba(0,0,0,0.15)] border border-[#bddb8a] aspect-[1/1.1] md:aspect-[1.1/1] hover:shadow-lg transition-all cursor-pointer group hover:bg-[#cbed9b] transform hover:-translate-y-1"
       onClick={onClick}
     >
-      {icon}
-      <h4 className="font-body text-[#1c1c1c] text-center text-[16px] leading-[1.2] mt-1 font-medium pb-1 drop-shadow-sm">
-        {title.split(' ').map((word, i) => <React.Fragment key={i}>{word}{i === 0 && title.includes(' ') && <br />}</React.Fragment>)}
+      <div className="flex-1 flex flex-col items-center justify-center">
+        {icon}
+      </div>
+      <h4 className="font-body text-[#1c1c1c] text-center text-[12px] md:text-[14px] leading-tight font-bold pb-2 drop-shadow-sm px-1">
+        {title}
       </h4>
     </div>
   );

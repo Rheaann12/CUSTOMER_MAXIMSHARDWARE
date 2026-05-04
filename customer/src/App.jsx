@@ -1,5 +1,6 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
+
 import Landing_page from './assets/Components/Landing_page';
 import Login from './assets/Components/Login';
 import Signup from './assets/Components/Signup';
@@ -26,57 +27,65 @@ const ProtectedRoute = ({ children }) => {
 
 export default function App() {
   return (
-    <Router>
-      <main>
-        <Routes>
-          <Route path="/" element={<Landing_page />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<Signup />} />
-          <Route path="/main-dashboard" element={
-            <ProtectedRoute>
-              <Main_Dashboard />
-            </ProtectedRoute>
-          } />
-          <Route path="/profile" element={
-            <ProtectedRoute>
-              <User_Profile />
-            </ProtectedRoute>
-          } />
-          <Route path="/edit-profile" element={
-            <ProtectedRoute>
-              <Edit_Profile />
-            </ProtectedRoute>
-          } />
-          <Route path="/products" element={<Products1 />} />
-          <Route path="/products/cement" element={<Product_Cement />} />
-          <Route path="/products/nails" element={<Product_Nails />} />
-          <Route path="/products/paint" element={<Product_Paint />} />
-          <Route path="/products/plumbing" element={<Product_Plumbing />} />
-          <Route path="/products/electrical" element={<Product_Electrical />} />
-          <Route path="/products/tools" element={<Product_Tools />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/contact" element={
-            <ProtectedRoute>
-              <Contact />
-            </ProtectedRoute>
-          } />
-          <Route path="/delivery" element={
-            <ProtectedRoute>
-              <Delivery />
-            </ProtectedRoute>
-          } />
-          <Route path="/my-orders" element={
-            <ProtectedRoute>
-              <My_Orders />
-            </ProtectedRoute>
-          } />
-          <Route path="/add-to-cart" element={
-            <ProtectedRoute>
-              <Add_To_Cart />
-            </ProtectedRoute>
-          } />
-        </Routes>
-      </main>
-    </Router>
+    <main>
+      <Routes>
+        <Route path="/" element={<Landing_page />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
+
+        <Route path="/main-dashboard" element={
+          <ProtectedRoute>
+            
+            <Main_Dashboard />
+          </ProtectedRoute>
+        } />
+
+        <Route path="/profile" element={
+          <ProtectedRoute>
+            <User_Profile />
+          </ProtectedRoute>
+        } />
+
+        <Route path="/edit-profile" element={
+          <ProtectedRoute>
+            <Edit_Profile />
+          </ProtectedRoute>
+        } />
+
+        <Route path="/products" element={<Products1 />} />
+        <Route path="/products/cement" element={<Product_Cement />} />
+        <Route path="/products/nails" element={<Product_Nails />} />
+        <Route path="/products/paint" element={<Product_Paint />} />
+        <Route path="/products/plumbing" element={<Product_Plumbing />} />
+        <Route path="/products/electrical" element={<Product_Electrical />} />
+        <Route path="/products/tools" element={<Product_Tools />} />
+
+        <Route path="/about" element={<About />} />
+
+        <Route path="/contact" element={
+          <ProtectedRoute>
+            <Contact />
+          </ProtectedRoute>
+        } />
+
+        <Route path="/delivery" element={
+          <ProtectedRoute>
+            <Delivery />
+          </ProtectedRoute>
+        } />
+
+        <Route path="/my-orders" element={
+          <ProtectedRoute>
+            <My_Orders />
+          </ProtectedRoute>
+        } />
+
+        <Route path="/add-to-cart" element={
+          <ProtectedRoute>
+            <Add_To_Cart />
+          </ProtectedRoute>
+        } />
+      </Routes>
+    </main>
   );
 }

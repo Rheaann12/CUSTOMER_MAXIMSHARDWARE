@@ -10,6 +10,12 @@ export default function Login() {
 
     const [phone, setPhone] = useState('');
     const [password, setPassword] = useState('');
+    const [showPassword, setShowPassword] = useState(false);
+    const [showForgotModal, setShowForgotModal] = useState(false);
+    const [forgotPhone, setForgotPhone] = useState('');
+    const [newPassword, setNewPassword] = useState('');
+    const [resetStep, setResetStep] = useState(1); // 1: Enter Phone, 2: Enter New Password
+    const [showResetSuccess, setShowResetSuccess] = useState(false);
 
     const handleLogin = (e) => {
         e.preventDefault();
@@ -31,14 +37,133 @@ export default function Login() {
 
     return (
         <div className="min-h-screen bg-white font-body flex flex-col relative">
+            {/* Forgot Password Modal */}
+            {showForgotModal && (
+                <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
+                    <div 
+                        className="absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity"
+                        onClick={() => setShowForgotModal(false)}
+                    ></div>
+                    <div className="bg-white rounded-[30px] p-8 md:p-12 flex flex-col items-center gap-6 shadow-2xl relative z-10 animate-in fade-in zoom-in duration-300 w-full max-w-[450px] border-2 border-[#1a4724]">
+                        <div className="w-20 h-20 bg-[#f8f9fa] rounded-full flex items-center justify-center shadow-inner">
+                            <svg className="w-10 h-10 text-[#1a4724]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                            </svg>
+                        </div>
+                        <div className="text-center">
+                            <h3 className="text-2xl font-black text-black mb-2 uppercase tracking-tight">Forgot Password?</h3>
+                            <p className="text-gray-600 text-sm font-medium">Enter your registered phone number and we'll help you reset your password.</p>
+                        </div>
+                        <div className="w-full space-y-4">
+                            {resetStep === 1 ? (
+                                <>
+                                    <div className="relative">
+                                        <input
+                                            type="text"
+                                            placeholder="Phone Number"
+                                            value={forgotPhone}
+                                            onChange={(e) => setForgotPhone(e.target.value)}
+                                            className="w-full h-12 px-6 bg-gray-50 border border-gray-200 rounded-xl text-black font-bold text-sm focus:outline-none focus:border-[#1a4724] transition-colors"
+                                        />
+                                    </div>
+                                    <button 
+                                        onClick={() => {
+                                            const users = JSON.parse(localStorage.getItem('users') || '[]');
+                                            const user = users.find(u => u.phone === forgotPhone);
+                                            if (user) {
+                                                setResetStep(2);
+                                            } else {
+                                                alert("Phone number not found!");
+                                            }
+                                        }}
+                                        className="w-full py-3.5 bg-[#1a4724] hover:bg-[#143c1f] text-white font-bold rounded-xl transition-all shadow-md uppercase tracking-wide text-sm"
+                                    >
+                                        Verify Phone Number
+                                    </button>
+                                </>
+                            ) : (
+                                <>
+                                    <div className="relative">
+                                        <input
+                                            type="password"
+                                            placeholder="New Password"
+                                            value={newPassword}
+                                            onChange={(e) => setNewPassword(e.target.value)}
+                                            className="w-full h-12 px-6 bg-gray-50 border border-gray-200 rounded-xl text-black font-bold text-sm focus:outline-none focus:border-[#1a4724] transition-colors"
+                                        />
+                                    </div>
+                                    <button 
+                                        onClick={() => {
+                                            if (newPassword.length < 4) {
+                                                alert("Password must be at least 4 characters!");
+                                                return;
+                                            }
+                                            const users = JSON.parse(localStorage.getItem('users') || '[]');
+                                            const userIndex = users.findIndex(u => u.phone === forgotPhone);
+                                            if (userIndex !== -1) {
+                                                users[userIndex].password = newPassword;
+                                                localStorage.setItem('users', JSON.stringify(users));
+                                                setShowResetSuccess(true);
+                                                setShowForgotModal(false);
+                                                setTimeout(() => {
+                                                    setShowResetSuccess(false);
+                                                    setForgotPhone('');
+                                                    setNewPassword('');
+                                                    setResetStep(1);
+                                                }, 3000);
+                                            }
+                                        }}
+                                        className="w-full py-3.5 bg-[#67bc45] hover:bg-[#58a33a] text-white font-bold rounded-xl transition-all shadow-md uppercase tracking-wide text-sm"
+                                    >
+                                        Update Password
+                                    </button>
+                                </>
+                            )}
+                            <button 
+                                onClick={() => {
+                                    setShowForgotModal(false);
+                                    setResetStep(1);
+                                    setForgotPhone('');
+                                    setNewPassword('');
+                                }}
+                                className="w-full py-2 text-gray-500 font-bold text-xs uppercase hover:text-black transition-colors"
+                            >
+                                Back to Login
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            )}
+
+            {/* Reset Success Overlay */}
+            {showResetSuccess && (
+                <div className="fixed inset-0 z-[110] flex items-center justify-center p-4">
+                    <div className="absolute inset-0 bg-black/60 backdrop-blur-md transition-opacity duration-500"></div>
+                    <div className="bg-white rounded-[30px] p-10 md:p-16 flex flex-col items-center gap-6 shadow-2xl relative z-10 animate-in fade-in zoom-in duration-300 scale-110 w-[90%] max-w-[500px]">
+                        <div className="w-24 h-24 bg-[#67bc45] rounded-full flex items-center justify-center shadow-lg shadow-green-200 animate-bounce">
+                            <svg className="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="4" d="M5 13l4 4L19 7" />
+                            </svg>
+                        </div>
+                        <div className="text-center">
+                            <h3 className="text-3xl font-black text-black mb-2 uppercase tracking-tight">Password Reset!</h3>
+                            <p className="text-gray-600 font-bold">Your password has been updated. You can now login with your new password.</p>
+                        </div>
+                        <div className="w-full bg-gray-100 h-1.5 rounded-full mt-4 overflow-hidden">
+                            <div className="bg-[#67bc45] h-full rounded-full animate-[progress_3s_linear_forwards]"></div>
+                        </div>
+                    </div>
+                </div>
+            )}
+
             {/* Success Overlay */}
             {showSuccessOverlay && (
                 <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
                     <div className="absolute inset-0 bg-black/60 backdrop-blur-md transition-opacity duration-500"></div>
-                    <div className="bg-white rounded-[30px] p-10 md:p-16 flex flex-col items-center gap-6 shadow-2xl relative z-10 animate-in fade-in zoom-in duration-300 scale-110">
-                        <div className="w-24 h-24 bg-[#67bc45] rounded-full flex items-center justify-center shadow-lg shadow-green-200 animate-pulse">
+                    <div className="bg-white rounded-[30px] p-10 md:p-16 flex flex-col items-center gap-6 shadow-2xl relative z-10 animate-in fade-in zoom-in duration-300 scale-110 w-[90%] max-w-[500px]">
+                        <div className="w-24 h-24 bg-[#67bc45] rounded-full flex items-center justify-center shadow-lg shadow-green-200 animate-bounce">
                             <svg className="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="4" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="4" d="M5 13l4 4L19 7" />
                             </svg>
                         </div>
                         <div className="text-center">
@@ -108,7 +233,7 @@ export default function Login() {
 
                     {/* Hero Branding */}
                     <div className="flex-1 text-center md:text-left select-none">
-                        <h1 className="text-[60px] md:text-[100px] font-pt-serif font-black text-white leading-[0.85] drop-shadow-[0_16px_16px_rgba(0,0,0,0.9)] tracking-tighter uppercase italic">
+                        <h1 className="text-[60px] md:text-[100px] font-pt-serif font-black text-white leading-[0.85] drop-shadow-[0_16px_16px_rgba(0,0,0,0.9)] tracking-tighter uppercase">
                             WELCOME <br />
                             <span className="inline-block mt-4">BACK</span>
                         </h1>
@@ -148,17 +273,39 @@ export default function Login() {
                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
                                             </svg>
                                         </div>
+                                        <div className="relative flex-1">
                                             <input
-                                                type="password"
+                                                type={showPassword ? "text" : "password"}
                                                 placeholder="Password"
                                                 value={password}
                                                 onChange={(e) => setPassword(e.target.value)}
                                                 className="w-full h-12 px-6 bg-white rounded-xl text-black font-bold text-sm focus:outline-none shadow-sm placeholder:text-gray-400 placeholder:font-medium"
                                                 required
                                             />
+                                            <button
+                                                type="button"
+                                                onClick={() => setShowPassword(!showPassword)}
+                                                className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 hover:text-[#264b32] transition-colors"
+                                            >
+                                                {showPassword ? (
+                                                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l18 18" />
+                                                    </svg>
+                                                ) : (
+                                                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                                                    </svg>
+                                                )}
+                                            </button>
+                                        </div>
                                     </div>
                                     <div className="ml-14 mt-2">
-                                        <a href="#" className="text-blue-500 hover:underline font-bold text-[11px] transition-colors">
+                                        <a 
+                                            href="#" 
+                                            onClick={(e) => { e.preventDefault(); setShowForgotModal(true); }}
+                                            className="text-blue-500 hover:underline font-bold text-[11px] transition-colors"
+                                        >
                                             Forgot Password?
                                         </a>
                                     </div>
