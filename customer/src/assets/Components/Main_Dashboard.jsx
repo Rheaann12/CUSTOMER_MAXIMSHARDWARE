@@ -71,7 +71,7 @@ export default function Main_Dashboard() {
           <h1 className="text-5xl md:text-[90px] font-pt-serif font-black text-[#2e2e2e] leading-[1.05] tracking-tight" style={{ textShadow: '2px 4px 6px rgba(0,0,0,0.25)' }}>
             YOUR TRUSTED
           </h1>
-          <h2 className="text-4xl md:text-[52px] font-serif font-extrabold text-[#114925] mt-1 md:mt-0 tracking-tight" style={{ textShadow: '1px 2px 4px rgba(0,0,0,0.2)' }}>
+          <h2 className="text-4xl md:text-[65px] font-serif font-extrabold text-[#114925] mt-1 md:mt-0 tracking-tight" style={{ textShadow: '1px 2px 4px rgba(0,0,0,0.2)' }}>
             HARDWARE PARTNER
           </h2>
           <p className="text-gray-800 font-semibold mt-4 md:mt-6 text-base md:text-[19px] tracking-tight">
