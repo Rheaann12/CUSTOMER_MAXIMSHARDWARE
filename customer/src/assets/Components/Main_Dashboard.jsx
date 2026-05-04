@@ -67,22 +67,22 @@ export default function Main_Dashboard() {
 
       {/* Hero Section */}
       <section className="relative flex flex-col md:flex-row items-center justify-between px-6 md:px-16 py-12 md:py-12 min-h-[60vh] md:min-h-[50vh] overflow-hidden bg-[#fbfbfb] border-b border-gray-100">
-        <div className="w-full md:max-w-xl z-20 text-center md:text-left mt-4 md:mt-4">
-          <h1 className="text-5xl md:text-[90px] font-pt-serif font-black text-[#2e2e2e] leading-[1.05] tracking-tight" style={{ textShadow: '2px 4px 6px rgba(0,0,0,0.25)' }}>
+        <div className="w-full md:max-w-xl z-20 text-left mt-4 md:mt-4">
+          <h1 className="text-4xl md:text-[65px] font-pt-serif font-black text-[#2e2e2e] leading-[1.05] tracking-tight whitespace-nowrap" style={{ textShadow: '2px 4px 6px rgba(0,0,0,0.25)' }}>
             YOUR TRUSTED
           </h1>
-          <h2 className="text-4xl md:text-[65px] font-serif font-extrabold text-[#114925] mt-1 md:mt-0 tracking-tight" style={{ textShadow: '1px 2px 4px rgba(0,0,0,0.2)' }}>
+          <h2 className="text-4xl md:text-[50px] font-serif font-extrabold text-[#114925] mt-1 md:mt-0 tracking-tight" style={{ textShadow: '1px 2px 4px rgba(0,0,0,0.2)' }}>
             HARDWARE PARTNER
           </h2>
-          <p className="text-gray-800 font-semibold mt-4 md:mt-6 text-base md:text-[19px] tracking-tight">
+          <p className="text-gray-800 font-semibold mt-4 md:mt-6 text-base md:text-[20px] tracking-tight">
             Quality Materials and Affordable Prices
           </p>
 
-          <div className="flex justify-center md:justify-start gap-4 mt-8 md:mt-8">
-            <button className="px-6 py-2.5 bg-[#5ca84a] text-white rounded-lg text-[15px] font-bold shadow-[0_3px_8px_rgba(92,168,74,0.4)] hover:bg-[#4ea13b] transition duration-300 capitalize min-w-[130px]" onClick={() => handleProtectedAction('/contact')}>
+          <div className="flex justify-start gap-4 mt-8 md:mt-8">
+            <button className="px-6 py-2.5 bg-[#5ca84a] text-white rounded-lg text-[16px] font-bold shadow-[0_3px_8px_rgba(92,168,74,0.4)] hover:bg-[#4ea13b] transition duration-300 capitalize min-w-[130px]" onClick={() => handleProtectedAction('/contact')}>
               Contact Us
             </button>
-            <button className="px-6 py-2.5 bg-transparent border-2 border-[#5ca84a] text-gray-800 rounded-lg text-[15px] font-bold shadow-sm hover:bg-green-50 transition duration-300 capitalize min-w-[130px]" onClick={() => navigate('/products')}>
+            <button className="px-6 py-2.5 bg-transparent border-2 border-[#5ca84a] text-gray-800 rounded-lg text-[16px] font-bold shadow-sm hover:bg-green-50 transition duration-300 capitalize min-w-[130px]" onClick={() => navigate('/products')}>
               Products
             </button>
           </div>
